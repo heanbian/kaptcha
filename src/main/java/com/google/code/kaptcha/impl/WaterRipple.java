@@ -10,22 +10,12 @@ import com.jhlabs.image.RippleFilter;
 import com.jhlabs.image.TransformFilter;
 import com.jhlabs.image.WaterFilter;
 
-/**
- * {@link WaterRipple} adds water ripple effect to an image.
- */
-public class WaterRipple extends Configurable implements GimpyEngine
-{
-	/**
-	 * Applies distortion by adding water ripple effect.
-	 *
-	 * @param baseImage the base image
-	 * @return the distorted image
-	 */
-	public BufferedImage getDistortedImage(BufferedImage baseImage)
-	{
+public class WaterRipple extends Configurable implements GimpyEngine {
+	
+	public BufferedImage getDistortedImage(BufferedImage baseImage) {
 		NoiseProducer noiseProducer = getConfig().getNoiseImpl();
-		BufferedImage distortedImage = new BufferedImage(baseImage.getWidth(),
-				baseImage.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		BufferedImage distortedImage = new BufferedImage(baseImage.getWidth(), baseImage.getHeight(),
+				BufferedImage.TYPE_INT_ARGB);
 
 		Graphics2D graphics = (Graphics2D) distortedImage.getGraphics();
 

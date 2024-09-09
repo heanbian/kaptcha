@@ -1,10 +1,7 @@
 package com.google.code.kaptcha.text;
 
+public interface TextProducer {
 
-/**
- * {@link TextProducer} is responsible for creating text.
- */
-public interface TextProducer
-{
 	public String getText();
+
 }

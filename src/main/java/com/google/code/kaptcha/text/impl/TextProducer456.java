@@ -1,15 +1,25 @@
 package com.google.code.kaptcha.text.impl;
 
 import java.security.SecureRandom;
+import java.time.LocalDateTime;
 import java.util.Random;
 
 import com.google.code.kaptcha.text.TextProducer;
 import com.google.code.kaptcha.util.Configurable;
 
-public class DefaultTextCreator extends Configurable implements TextProducer {
-	
+public class TextProducer456 extends Configurable implements TextProducer {
+
 	public String getText() {
-		int length = getConfig().getTextProducerCharLength();
+		int length = 4;
+
+		var min = LocalDateTime.now().getMinute();
+		if (min % 2 == 0) {
+			length = 5;
+		}
+		if (min % 3 == 0) {
+			length = 6;
+		}
+
 		char[] chars = getConfig().getTextProducerCharString();
 		Random rand = new SecureRandom();
 		StringBuffer text = new StringBuffer();
@@ -19,5 +29,4 @@ public class DefaultTextCreator extends Configurable implements TextProducer {
 
 		return text.toString();
 	}
-	
 }

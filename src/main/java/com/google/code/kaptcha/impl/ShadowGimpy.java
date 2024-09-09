@@ -12,22 +12,12 @@ import com.jhlabs.image.RippleFilter;
 import com.jhlabs.image.ShadowFilter;
 import com.jhlabs.image.TransformFilter;
 
-/**
- * {@link ShadowGimpy} adds shadow to the text on the image and two noises.
- */
-public class ShadowGimpy extends Configurable implements GimpyEngine
-{
-	/**
-	 * Applies distortion by adding shadow to the text and also two noises.
-	 *
-	 * @param baseImage the base image
-	 * @return the distorted image
-	 */
-	public BufferedImage getDistortedImage(BufferedImage baseImage)
-	{
+public class ShadowGimpy extends Configurable implements GimpyEngine {
+	
+	public BufferedImage getDistortedImage(BufferedImage baseImage) {
 		NoiseProducer noiseProducer = getConfig().getNoiseImpl();
-		BufferedImage distortedImage = new BufferedImage(baseImage.getWidth(),
-				baseImage.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		BufferedImage distortedImage = new BufferedImage(baseImage.getWidth(), baseImage.getHeight(),
+				BufferedImage.TYPE_INT_ARGB);
 
 		Graphics2D graph = (Graphics2D) distortedImage.getGraphics();
 
@@ -52,7 +42,6 @@ public class ShadowGimpy extends Configurable implements GimpyEngine
 		graph.drawImage(effectImage, 0, 0, null, null);
 		graph.dispose();
 
-		// draw lines over the image and/or text
 		noiseProducer.makeNoise(distortedImage, .1f, .1f, .25f, .25f);
 		noiseProducer.makeNoise(distortedImage, .1f, .25f, .5f, .9f);
 

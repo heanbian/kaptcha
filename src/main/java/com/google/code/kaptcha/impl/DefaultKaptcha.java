@@ -9,30 +9,16 @@ import java.awt.image.BufferedImage;
 import com.google.code.kaptcha.BackgroundProducer;
 import com.google.code.kaptcha.GimpyEngine;
 import com.google.code.kaptcha.Producer;
-import com.google.code.kaptcha.text.TextProducer;
 import com.google.code.kaptcha.text.WordRenderer;
 import com.google.code.kaptcha.util.Configurable;
 
-/**
- * Default {@link Producer} implementation which draws a captcha image using
- * {@link WordRenderer}, {@link GimpyEngine}, {@link BackgroundProducer}.
- * Text creation uses {@link TextProducer}.
- */
-public class DefaultKaptcha extends Configurable implements Producer
-{
+public class DefaultKaptcha extends Configurable implements Producer {
+
 	private int width = 200;
 
 	private int height = 50;
 
-	/**
-	 * Create an image which will have written a distorted text.
-	 * 
-	 * @param text
-	 *            the distorted characters
-	 * @return image with the text
-	 */
-	public BufferedImage createImage(String text)
-	{
+	public BufferedImage createImage(String text) {
 		WordRenderer wordRenderer = getConfig().getWordRendererImpl();
 		GimpyEngine gimpyEngine = getConfig().getObscurificatorImpl();
 		BackgroundProducer backgroundProducer = getConfig().getBackgroundImpl();
@@ -44,22 +30,19 @@ public class DefaultKaptcha extends Configurable implements Producer
 		bi = gimpyEngine.getDistortedImage(bi);
 		bi = backgroundProducer.addBackground(bi);
 		Graphics2D graphics = bi.createGraphics();
-		if (isBorderDrawn)
-		{
+		if (isBorderDrawn) {
 			drawBox(graphics);
 		}
 		return bi;
 	}
 
-	private void drawBox(Graphics2D graphics)
-	{
+	private void drawBox(Graphics2D graphics) {
 		Color borderColor = getConfig().getBorderColor();
 		int borderThickness = getConfig().getBorderThickness();
 
 		graphics.setColor(borderColor);
 
-		if (borderThickness != 1)
-		{
+		if (borderThickness != 1) {
 			BasicStroke stroke = new BasicStroke((float) borderThickness);
 			graphics.setStroke(stroke);
 		}
@@ -74,11 +57,7 @@ public class DefaultKaptcha extends Configurable implements Producer
 		graphics.draw(line2);
 	}
 
-	/**
-	 * @return the text to be drawn
-	 */
-	public String createText()
-	{
+	public String createText() {
 		return getConfig().getTextProducerImpl().getText();
 	}
 }

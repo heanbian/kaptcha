@@ -1,7 +1,7 @@
 package com.google.code.kaptcha;
 
-public class Constants
-{
+public class Constants {
+	
 	public final static String KAPTCHA_SESSION_KEY = "KAPTCHA_SESSION_KEY";
 
 	public final static String KAPTCHA_SESSION_DATE = "KAPTCHA_SESSION_DATE";
@@ -37,7 +37,7 @@ public class Constants
 	public final static String KAPTCHA_TEXTPRODUCER_FONT_SIZE = "kaptcha.textproducer.font.size";
 
 	public final static String KAPTCHA_TEXTPRODUCER_CHAR_SPACE = "kaptcha.textproducer.char.space";
-	
+
 	public final static String KAPTCHA_WORDRENDERER_IMPL = "kaptcha.word.impl";
 
 	public final static String KAPTCHA_BACKGROUND_IMPL = "kaptcha.background.impl";
