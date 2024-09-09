@@ -7,7 +7,7 @@
 	<artifactId>kaptcha</artifactId>
 	<version>3.0.0</version>
 	<packaging>jar</packaging>
-	<name>heanbian-kaptcha</name>
+	<name>kaptcha</name>
 	<url>https://github.com/heanbian/kaptcha</url>
 	<description>heanbian-kaptcha</description>
 	<inceptionYear>2019</inceptionYear>
