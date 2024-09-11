@@ -5,12 +5,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.heanbian</groupId>
 	<artifactId>kaptcha</artifactId>
-	<version>3.0.0</version>
+	<version>3.0.1</version>
 	<packaging>jar</packaging>
 	<name>kaptcha</name>
 	<url>https://github.com/heanbian/kaptcha</url>
-	<description>kaptcha</description>
-	<inceptionYear>2019</inceptionYear>
+	<description>http://code.google.com/p/kaptcha/</description>
+	<inceptionYear>2024</inceptionYear>
 	<licenses>
 		<license>
 			<name>The Apache License, Version 2.0</name>
@@ -26,8 +26,7 @@
 			<organization>heanbian.com</organization>
 			<organizationUrl>https://heanbian.com</organizationUrl>
 			<roles>
-				<role>Developer</role>
-				<role>Maintainer</role>
+				<role>Mover</role>
 			</roles>
 		</developer>
 	</developers>
@@ -61,7 +60,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-compiler-plugin</artifactId>
-						<version>4.0.0-beta-1</version>
+						<version>3.13.0</version>
 						<configuration>
 							<encoding>UTF-8</encoding>
 							<source>21</source>
@@ -71,7 +70,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
-						<version>4.0.0-beta-1</version>
+						<version>3.3.1</version>
 						<executions>
 							<execution>
 								<id>attach-sources</id>
