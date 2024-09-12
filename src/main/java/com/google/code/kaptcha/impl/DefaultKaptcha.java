@@ -19,12 +19,16 @@ public class DefaultKaptcha extends Configurable implements Producer {
 	private int height = 50;
 
 	public BufferedImage createImage(String text) {
+		this.width = getConfig().getWidth();
+		this.height = getConfig().getHeight();
+		return createImage(text, this.width, this.height);
+	}
+
+	public BufferedImage createImage(String text, int width, int height) {
 		WordRenderer wordRenderer = getConfig().getWordRendererImpl();
 		GimpyEngine gimpyEngine = getConfig().getObscurificatorImpl();
 		BackgroundProducer backgroundProducer = getConfig().getBackgroundImpl();
 		boolean isBorderDrawn = getConfig().isBorderDrawn();
-		this.width = getConfig().getWidth();
-		this.height = getConfig().getHeight();
 
 		BufferedImage bi = wordRenderer.renderWord(text, width, height);
 		bi = gimpyEngine.getDistortedImage(bi);
