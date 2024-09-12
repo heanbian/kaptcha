@@ -1,5 +1,8 @@
 = kaptcha
 
+WARNING: kaptcha
+
+
 ----
 <dependency>
   <groupId>com.heanbian</groupId>
@@ -8,4 +11,57 @@
 </dependency>
 ----
 
-http://code.google.com/p/kaptcha/
+http://code.google.com/p/kaptcha/[http://code.google.com/p/kaptcha/]
+
+
+== spring boot example
+
+`step 1`
+
+----
+
+@Configuration
+public class KcaptchaConfig {
+
+	@Bean
+	DefaultKaptcha getDefaultKaptcha() {
+		Properties p = new Properties(11);
+		p.setProperty(Constants.KAPTCHA_BORDER, "no");
+		p.setProperty(Constants.KAPTCHA_IMAGE_WIDTH, "200");
+		p.setProperty(Constants.KAPTCHA_IMAGE_HEIGHT, "40");
+		p.setProperty(Constants.KAPTCHA_TEXTPRODUCER_CHAR_LENGTH, "6");
+		p.setProperty(Constants.KAPTCHA_TEXTPRODUCER_FONT_NAMES, "宋体");
+		p.setProperty(Constants.KAPTCHA_TEXTPRODUCER_FONT_SIZE, "38");
+		p.setProperty(Constants.KAPTCHA_TEXTPRODUCER_CHAR_STRING, "2345678abcehmkx");
+		p.setProperty(Constants.KAPTCHA_TEXTPRODUCER_CHAR_SPACE, "4");
+		p.setProperty(Constants.KAPTCHA_TEXTPRODUCER_IMPL, "com.google.code.kaptcha.text.impl.TextProducer456");
+
+		p.setProperty(Constants.KAPTCHA_BACKGROUND_CLR_FROM, "white");
+		p.setProperty(Constants.KAPTCHA_BACKGROUND_CLR_TO, "white");
+
+		DefaultKaptcha defaultKaptcha = new DefaultKaptcha();
+		defaultKaptcha.setConfig(new Config(p));
+		return defaultKaptcha;
+	}
+}
+----
+
+`step 2`
+
+----
+	@Autowired
+	private DefaultKaptcha captchaProducer;
+----
+
+`step 3`
+
+----
+	String captchaText = captchaProducer.createText();
+	BufferedImage image = captchaProducer.createImage(captchaText);
+
+	FastByteArrayOutputStream out = new FastByteArrayOutputStream();
+	ImageIO.write(image, "png", out);
+	String captchaImg = Base64.getEncoder().encodeToString(out.toByteArray());
+	out.close();
+----
+
