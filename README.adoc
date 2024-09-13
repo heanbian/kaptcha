@@ -7,7 +7,7 @@ WARNING: kaptcha
 <dependency>
   <groupId>com.heanbian</groupId>
   <artifactId>kaptcha</artifactId>
-  <version>3.0.1</version>
+  <version>3.0.2</version>
 </dependency>
 ----
 
@@ -16,7 +16,7 @@ http://code.google.com/p/kaptcha/[http://code.google.com/p/kaptcha/]
 
 == spring boot example
 
-`step 1`
+step: 1
 
 ----
 
@@ -46,14 +46,14 @@ public class KcaptchaConfig {
 }
 ----
 
-`step 2`
+step: 2
 
 ----
 	@Autowired
 	private DefaultKaptcha captchaProducer;
 ----
 
-`step 3`
+step: 3
 
 ----
 	String captchaText = captchaProducer.createText();
