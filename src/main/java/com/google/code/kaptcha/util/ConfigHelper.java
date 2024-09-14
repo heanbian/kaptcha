@@ -5,7 +5,7 @@ import java.awt.Font;
 import java.lang.reflect.Field;
 
 public class ConfigHelper {
-	
+
 	public Color getColor(String paramName, String paramValue, Color defaultColor) {
 		Color color;
 		if ("".equals(paramValue) || paramValue == null) {
@@ -34,12 +34,8 @@ public class ConfigHelper {
 				throw new ConfigException(paramName, paramValue,
 						"Color can only have 3 (RGB) or 4 (RGB with Alpha) values.");
 			}
-		} catch (NumberFormatException nfe) {
-			throw new ConfigException(paramName, paramValue, nfe);
-		} catch (ArrayIndexOutOfBoundsException aie) {
-			throw new ConfigException(paramName, paramValue, aie);
-		} catch (IllegalArgumentException iae) {
-			throw new ConfigException(paramName, paramValue, iae);
+		} catch (Exception e) {
+			throw new ConfigException(paramName, paramValue, e);
 		}
 		return color;
 	}
@@ -49,30 +45,22 @@ public class ConfigHelper {
 		try {
 			Field field = Class.forName("java.awt.Color").getField(paramValue);
 			color = (Color) field.get(null);
-		} catch (NoSuchFieldException nsfe) {
-			throw new ConfigException(paramName, paramValue, nsfe);
-		} catch (ClassNotFoundException cnfe) {
-			throw new ConfigException(paramName, paramValue, cnfe);
-		} catch (IllegalAccessException iae) {
-			throw new ConfigException(paramName, paramValue, iae);
+		} catch (Exception e) {
+			throw new ConfigException(paramName, paramValue, e);
 		}
 		return color;
 	}
 
-	@SuppressWarnings("deprecation")
 	public Object getClassInstance(String paramName, String paramValue, Object defaultInstance, Config config) {
 		Object instance;
 		if ("".equals(paramValue) || paramValue == null) {
 			instance = defaultInstance;
 		} else {
 			try {
-				instance = Class.forName(paramValue).newInstance();
-			} catch (IllegalAccessException iae) {
-				throw new ConfigException(paramName, paramValue, iae);
-			} catch (ClassNotFoundException cnfe) {
-				throw new ConfigException(paramName, paramValue, cnfe);
-			} catch (InstantiationException ie) {
-				throw new ConfigException(paramName, paramValue, ie);
+				Class<?> clazz = Class.forName(paramValue);
+				instance = clazz.getDeclaredConstructor().newInstance();
+			} catch (Exception e) {
+				throw new ConfigException(paramName, paramValue, e);
 			}
 		}
 
@@ -135,8 +123,8 @@ public class ConfigHelper {
 	}
 
 	private void setConfigurable(Object object, Config config) {
-		if (object instanceof Configurable) {
-			((Configurable) object).setConfig(config);
+		if (object instanceof Configurable c) {
+			c.setConfig(config);
 		}
 	}
 }
