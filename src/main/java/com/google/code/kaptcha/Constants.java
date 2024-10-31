@@ -1,6 +1,6 @@
 package com.google.code.kaptcha;
 
-public class Constants {
+public final class Constants {
 	
 	public final static String KAPTCHA_SESSION_KEY = "KAPTCHA_SESSION_KEY";
 

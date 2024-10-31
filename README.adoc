@@ -7,7 +7,7 @@ WARNING: kaptcha
 <dependency>
   <groupId>com.heanbian</groupId>
   <artifactId>kaptcha</artifactId>
-  <version>3.0.2</version>
+  <version>3.0.3</version>
 </dependency>
 ----
 
