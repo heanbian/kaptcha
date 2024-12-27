@@ -8,13 +8,13 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import com.google.code.kaptcha.BackgroundProducer;
-import com.google.code.kaptcha.util.Configurable;
+import com.google.code.kaptcha.util.AbstractKaptchaConfig;
 
-public class DefaultBackground extends Configurable implements BackgroundProducer {
+public class DefaultBackground extends AbstractKaptchaConfig implements BackgroundProducer {
 	
 	public BufferedImage addBackground(BufferedImage baseImage) {
-		Color colorFrom = getConfig().getBackgroundColorFrom();
-		Color colorTo = getConfig().getBackgroundColorTo();
+		Color colorFrom = getKaptchaConfig().getBackgroundColorFrom();
+		Color colorTo = getKaptchaConfig().getBackgroundColorTo();
 
 		int width = baseImage.getWidth();
 		int height = baseImage.getHeight();

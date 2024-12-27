@@ -10,17 +10,17 @@ import com.google.code.kaptcha.BackgroundProducer;
 import com.google.code.kaptcha.GimpyEngine;
 import com.google.code.kaptcha.Producer;
 import com.google.code.kaptcha.text.WordRenderer;
-import com.google.code.kaptcha.util.Configurable;
+import com.google.code.kaptcha.util.AbstractKaptchaConfig;
 
-public class DefaultKaptcha extends Configurable implements Producer {
+public class DefaultKaptcha extends AbstractKaptchaConfig implements Producer {
 
 	private int width = 200;
 
 	private int height = 50;
 
 	public BufferedImage createImage(String text) {
-		int width = getConfig().getWidth();
-		int height = getConfig().getHeight();
+		int width = getKaptchaConfig().getWidth();
+		int height = getKaptchaConfig().getHeight();
 		return createImage(text, width, height);
 	}
 
@@ -28,10 +28,10 @@ public class DefaultKaptcha extends Configurable implements Producer {
 		this.width = width;
 		this.height = height;
 
-		WordRenderer wordRenderer = getConfig().getWordRendererImpl();
-		GimpyEngine gimpyEngine = getConfig().getObscurificatorImpl();
-		BackgroundProducer backgroundProducer = getConfig().getBackgroundImpl();
-		boolean isBorderDrawn = getConfig().isBorderDrawn();
+		WordRenderer wordRenderer = getKaptchaConfig().getWordRendererImpl();
+		GimpyEngine gimpyEngine = getKaptchaConfig().getObscurificatorImpl();
+		BackgroundProducer backgroundProducer = getKaptchaConfig().getBackgroundImpl();
+		boolean isBorderDrawn = getKaptchaConfig().isBorderDrawn();
 
 		BufferedImage bi = wordRenderer.renderWord(text, width, height);
 		bi = gimpyEngine.getDistortedImage(bi);
@@ -44,8 +44,8 @@ public class DefaultKaptcha extends Configurable implements Producer {
 	}
 
 	private void drawBox(Graphics2D graphics) {
-		Color borderColor = getConfig().getBorderColor();
-		int borderThickness = getConfig().getBorderThickness();
+		Color borderColor = getKaptchaConfig().getBorderColor();
+		int borderThickness = getKaptchaConfig().getBorderThickness();
 
 		graphics.setColor(borderColor);
 
@@ -65,6 +65,6 @@ public class DefaultKaptcha extends Configurable implements Producer {
 	}
 
 	public String createText() {
-		return getConfig().getTextProducerImpl().getText();
+		return getKaptchaConfig().getTextProducerImpl().getText();
 	}
 }

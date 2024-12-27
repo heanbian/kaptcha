@@ -5,11 +5,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.heanbian</groupId>
 	<artifactId>kaptcha</artifactId>
-	<version>3.0.3</version>
+	<version>3.0.4</version>
 	<packaging>jar</packaging>
 	<name>kaptcha</name>
 	<url>https://github.com/heanbian/kaptcha</url>
-	<description>http://code.google.com/p/kaptcha/</description>
+	<description>
+		https://github.com/heanbian/kaptcha
+		http://code.google.com/p/kaptcha
+	</description>
 	<inceptionYear>2024</inceptionYear>
 	<licenses>
 		<license>
@@ -83,7 +86,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
-						<version>3.10.1</version>
+						<version>3.11.2</version>
 						<executions>
 							<execution>
 								<id>attach-javadocs</id>
@@ -160,11 +163,4 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>com.jhlabs</groupId>
-			<artifactId>filters</artifactId>
-			<version>2.0.235-1</version>
-		</dependency>
-	</dependencies>
 </project>

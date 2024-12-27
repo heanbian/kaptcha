@@ -18,15 +18,15 @@ import com.google.code.kaptcha.text.WordRenderer;
 import com.google.code.kaptcha.text.impl.DefaultTextCreator;
 import com.google.code.kaptcha.text.impl.DefaultWordRenderer;
 
-public class Config {
+public class KaptchaConfig {
 
 	private Properties properties;
 
-	private ConfigHelper helper;
+	private KaptchaHelper helper;
 
-	public Config(Properties properties) {
+	public KaptchaConfig(Properties properties) {
 		this.properties = properties;
-		this.helper = new ConfigHelper();
+		this.helper = new KaptchaHelper();
 	}
 
 	public boolean isBorderDrawn() {

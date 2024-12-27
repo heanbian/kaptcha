@@ -11,15 +11,15 @@ import java.security.SecureRandom;
 import java.util.Random;
 
 import com.google.code.kaptcha.text.WordRenderer;
-import com.google.code.kaptcha.util.Configurable;
+import com.google.code.kaptcha.util.AbstractKaptchaConfig;
 
-public class DefaultWordRenderer extends Configurable implements WordRenderer {
+public class DefaultWordRenderer extends AbstractKaptchaConfig implements WordRenderer {
 
 	public BufferedImage renderWord(String word, int width, int height) {
-		int fontSize = getConfig().getTextProducerFontSize();
-		Font[] fonts = getConfig().getTextProducerFonts(fontSize);
-		Color color = getConfig().getTextProducerFontColor();
-		int charSpace = getConfig().getTextProducerCharSpace();
+		int fontSize = getKaptchaConfig().getTextProducerFontSize();
+		Font[] fonts = getKaptchaConfig().getTextProducerFonts(fontSize);
+		Color color = getKaptchaConfig().getTextProducerFontColor();
+		int charSpace = getKaptchaConfig().getTextProducerCharSpace();
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2D = image.createGraphics();
 		g2D.setColor(color);

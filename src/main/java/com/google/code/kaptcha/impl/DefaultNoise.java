@@ -12,12 +12,12 @@ import java.security.SecureRandom;
 import java.util.Random;
 
 import com.google.code.kaptcha.NoiseProducer;
-import com.google.code.kaptcha.util.Configurable;
+import com.google.code.kaptcha.util.AbstractKaptchaConfig;
 
-public class DefaultNoise extends Configurable implements NoiseProducer {
+public class DefaultNoise extends AbstractKaptchaConfig implements NoiseProducer {
 
 	public void makeNoise(BufferedImage image, float factorOne, float factorTwo, float factorThree, float factorFour) {
-		Color color = getConfig().getNoiseColor();
+		Color color = getKaptchaConfig().getNoiseColor();
 
 		int width = image.getWidth();
 		int height = image.getHeight();

@@ -4,19 +4,18 @@ import java.security.SecureRandom;
 import java.util.Random;
 
 import com.google.code.kaptcha.text.TextProducer;
-import com.google.code.kaptcha.util.Configurable;
+import com.google.code.kaptcha.util.AbstractKaptchaConfig;
 
-public class DefaultTextCreator extends Configurable implements TextProducer {
+public class DefaultTextCreator extends AbstractKaptchaConfig implements TextProducer {
 	
 	public String getText() {
-		int length = getConfig().getTextProducerCharLength();
-		char[] chars = getConfig().getTextProducerCharString();
+		int length = getKaptchaConfig().getTextProducerCharLength();
+		char[] chars = getKaptchaConfig().getTextProducerCharString();
 		Random rand = new SecureRandom();
 		StringBuffer text = new StringBuffer();
 		for (int i = 0; i < length; i++) {
 			text.append(chars[rand.nextInt(chars.length)]);
 		}
-
 		return text.toString();
 	}
 	

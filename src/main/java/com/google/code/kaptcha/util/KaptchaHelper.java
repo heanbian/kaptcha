@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.lang.reflect.Field;
 
-public class ConfigHelper {
+public class KaptchaHelper {
 
 	public Color getColor(String paramName, String paramValue, Color defaultColor) {
 		Color color;
@@ -31,11 +31,11 @@ public class ConfigHelper {
 			} else if (colorValues.length == 3) {
 				color = new Color(r, g, b);
 			} else {
-				throw new ConfigException(paramName, paramValue,
+				throw new KaptchaException(paramName, paramValue,
 						"Color can only have 3 (RGB) or 4 (RGB with Alpha) values.");
 			}
 		} catch (Exception e) {
-			throw new ConfigException(paramName, paramValue, e);
+			throw new KaptchaException(paramName, paramValue, e);
 		}
 		return color;
 	}
@@ -46,12 +46,12 @@ public class ConfigHelper {
 			Field field = Class.forName("java.awt.Color").getField(paramValue);
 			color = (Color) field.get(null);
 		} catch (Exception e) {
-			throw new ConfigException(paramName, paramValue, e);
+			throw new KaptchaException(paramName, paramValue, e);
 		}
 		return color;
 	}
 
-	public Object getClassInstance(String paramName, String paramValue, Object defaultInstance, Config config) {
+	public Object getClassInstance(String paramName, String paramValue, Object defaultInstance, KaptchaConfig config) {
 		Object instance;
 		if ("".equals(paramValue) || paramValue == null) {
 			instance = defaultInstance;
@@ -60,7 +60,7 @@ public class ConfigHelper {
 				Class<?> clazz = Class.forName(paramValue);
 				instance = clazz.getDeclaredConstructor().newInstance();
 			} catch (Exception e) {
-				throw new ConfigException(paramName, paramValue, e);
+				throw new KaptchaException(paramName, paramValue, e);
 			}
 		}
 
@@ -91,10 +91,10 @@ public class ConfigHelper {
 			try {
 				intValue = Integer.parseInt(paramValue);
 				if (intValue < 1) {
-					throw new ConfigException(paramName, paramValue, "Value must be greater than or equals to 1.");
+					throw new KaptchaException(paramName, paramValue, "Value must be greater than or equals to 1.");
 				}
 			} catch (NumberFormatException nfe) {
-				throw new ConfigException(paramName, paramValue, nfe);
+				throw new KaptchaException(paramName, paramValue, nfe);
 			}
 		}
 		return intValue;
@@ -117,14 +117,14 @@ public class ConfigHelper {
 		} else if ("no".equals(paramValue)) {
 			booleanValue = false;
 		} else {
-			throw new ConfigException(paramName, paramValue, "Value must be either yes or no.");
+			throw new KaptchaException(paramName, paramValue, "Value must be either yes or no.");
 		}
 		return booleanValue;
 	}
 
-	private void setConfigurable(Object object, Config config) {
-		if (object instanceof Configurable c) {
-			c.setConfig(config);
+	private void setConfigurable(Object object, KaptchaConfig kaptchaConfig) {
+		if (object instanceof AbstractKaptchaConfig c) {
+			c.setKaptchaConfig(kaptchaConfig);
 		}
 	}
 }

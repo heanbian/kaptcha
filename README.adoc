@@ -7,7 +7,7 @@ WARNING: kaptcha
 <dependency>
   <groupId>com.heanbian</groupId>
   <artifactId>kaptcha</artifactId>
-  <version>3.0.3</version>
+  <version>3.0.4</version>
 </dependency>
 ----
 
@@ -40,7 +40,7 @@ public class KcaptchaConfig {
 		p.setProperty(Constants.KAPTCHA_BACKGROUND_CLR_TO, "white");
 
 		DefaultKaptcha defaultKaptcha = new DefaultKaptcha();
-		defaultKaptcha.setConfig(new Config(p));
+		defaultKaptcha.setKaptchaConfig(new KaptchaConfig(p));
 		return defaultKaptcha;
 	}
 }
@@ -63,5 +63,7 @@ public class KcaptchaConfig {
 	ImageIO.write(image, "png", out);
 	String captchaImg = Base64.getEncoder().encodeToString(out.toByteArray());
 	out.close();
+	
+	System.out.println(captchaImg);
 ----
 

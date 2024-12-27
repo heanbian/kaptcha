@@ -5,9 +5,9 @@ import java.time.LocalDateTime;
 import java.util.Random;
 
 import com.google.code.kaptcha.text.TextProducer;
-import com.google.code.kaptcha.util.Configurable;
+import com.google.code.kaptcha.util.AbstractKaptchaConfig;
 
-public class TextProducer456 extends Configurable implements TextProducer {
+public class TextProducer456 extends AbstractKaptchaConfig implements TextProducer {
 
 	public String getText() {
 		int length = 4;
@@ -20,7 +20,7 @@ public class TextProducer456 extends Configurable implements TextProducer {
 			length = 6;
 		}
 
-		char[] chars = getConfig().getTextProducerCharString();
+		char[] chars = getKaptchaConfig().getTextProducerCharString();
 		Random rand = new SecureRandom();
 		StringBuffer text = new StringBuffer();
 		for (int i = 0; i < length; i++) {
