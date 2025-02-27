@@ -59,4 +59,5 @@ public class DefaultWordRenderer extends AbstractKaptchaConfig implements WordRe
 
 		return image;
 	}
+	
 }

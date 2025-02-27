@@ -172,4 +172,5 @@ public class KaptchaConfig {
 	public Properties getProperties() {
 		return this.properties;
 	}
+	
 }

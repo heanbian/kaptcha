@@ -9,7 +9,6 @@ import com.google.code.kaptcha.GimpyEngine;
 public class FishEyeGimpy implements GimpyEngine {
 	
 	public BufferedImage getDistortedImage(BufferedImage baseImage) {
-
 		Graphics2D graph = (Graphics2D) baseImage.getGraphics();
 		int imageHeight = baseImage.getHeight();
 		int imageWidth = baseImage.getWidth();
@@ -85,4 +84,5 @@ public class FishEyeGimpy implements GimpyEngine {
 			return -0.75D * s * s * s + 1.5D * s * s + 0.25D * s;
 		}
 	}
+	
 }

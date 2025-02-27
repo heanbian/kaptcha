@@ -40,4 +40,5 @@ public class DefaultBackground extends AbstractKaptchaConfig implements Backgrou
 
 		return imageWithBackground;
 	}
+	
 }

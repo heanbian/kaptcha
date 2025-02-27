@@ -15,4 +15,5 @@ public class KaptchaException extends RuntimeException {
 	public KaptchaException(String paramName, String paramValue, String message) {
 		super("Invalid value '" + paramValue + "' for config parameter '" + paramName + "'. " + message);
 	}
+	
 }

@@ -61,4 +61,5 @@ public class DefaultNoise extends AbstractKaptchaConfig implements NoiseProducer
 
 		graph.dispose();
 	}
+	
 }

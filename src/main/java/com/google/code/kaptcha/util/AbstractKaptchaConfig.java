@@ -11,4 +11,5 @@ public abstract class AbstractKaptchaConfig {
 	public void setKaptchaConfig(KaptchaConfig kaptchaConfig) {
 		this.kaptchaConfig = kaptchaConfig;
 	}
+	
 }

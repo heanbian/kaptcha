@@ -43,4 +43,5 @@ public class WaterRipple extends AbstractKaptchaConfig implements GimpyEngine {
 		noiseProducer.makeNoise(distortedImage, .1f, .25f, .5f, .9f);
 		return distortedImage;
 	}
+	
 }

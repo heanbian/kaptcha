@@ -12,11 +12,11 @@ public class DefaultTextCreator extends AbstractKaptchaConfig implements TextPro
 		int length = getKaptchaConfig().getTextProducerCharLength();
 		char[] chars = getKaptchaConfig().getTextProducerCharString();
 		Random rand = new SecureRandom();
-		StringBuffer text = new StringBuffer();
+		StringBuilder tb = new StringBuilder(length);
 		for (int i = 0; i < length; i++) {
-			text.append(chars[rand.nextInt(chars.length)]);
+			tb.append(chars[rand.nextInt(chars.length)]);
 		}
-		return text.toString();
+		return tb.toString();
 	}
 	
 }

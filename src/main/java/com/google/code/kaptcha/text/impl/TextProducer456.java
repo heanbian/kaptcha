@@ -10,23 +10,15 @@ import com.google.code.kaptcha.util.AbstractKaptchaConfig;
 public class TextProducer456 extends AbstractKaptchaConfig implements TextProducer {
 
 	public String getText() {
-		int length = 4;
-
-		var min = LocalDateTime.now().getMinute();
-		if (min % 2 == 0) {
-			length = 5;
-		}
-		if (min % 3 == 0) {
-			length = 6;
-		}
-
-		char[] chars = getKaptchaConfig().getTextProducerCharString();
+		int minute = LocalDateTime.now().getMinute();
+		int length = (minute % 2 == 0) ? 5 : ((minute % 3 == 0) ? 6 : 4);
 		Random rand = new SecureRandom();
-		StringBuffer text = new StringBuffer();
+		char[] chars = getKaptchaConfig().getTextProducerCharString();
+		StringBuilder tb = new StringBuilder(length);
 		for (int i = 0; i < length; i++) {
-			text.append(chars[rand.nextInt(chars.length)]);
+			tb.append(chars[rand.nextInt(chars.length)]);
 		}
-
-		return text.toString();
+		return tb.toString();
 	}
+
 }

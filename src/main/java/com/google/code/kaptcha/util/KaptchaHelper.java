@@ -127,4 +127,5 @@ public class KaptchaHelper {
 			c.setKaptchaConfig(kaptchaConfig);
 		}
 	}
+	
 }
