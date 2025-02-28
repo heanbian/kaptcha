@@ -7,7 +7,7 @@ WARNING: kaptcha
 <dependency>
   <groupId>com.heanbian</groupId>
   <artifactId>kaptcha</artifactId>
-  <version>3.0.6</version>
+  <version>3.0.7</version>
 </dependency>
 ----
 
@@ -24,7 +24,7 @@ http://code.google.com/p/kaptcha/[http://code.google.com/p/kaptcha/]
 public class KcaptchaConfig {
 
 	@Bean
-	DefaultKaptcha getDefaultKaptcha() {
+	DefaultKaptcha defaultKaptcha() {
 		Properties p = new Properties(11);
 		p.setProperty(Constants.KAPTCHA_BORDER, "no");
 		p.setProperty(Constants.KAPTCHA_IMAGE_WIDTH, "200");
@@ -39,9 +39,9 @@ public class KcaptchaConfig {
 		p.setProperty(Constants.KAPTCHA_BACKGROUND_CLR_FROM, "white");
 		p.setProperty(Constants.KAPTCHA_BACKGROUND_CLR_TO, "white");
 
-		DefaultKaptcha defaultKaptcha = new DefaultKaptcha();
-		defaultKaptcha.setKaptchaConfig(new KaptchaConfig(p));
-		return defaultKaptcha;
+		DefaultKaptcha dk = new DefaultKaptcha();
+		dk.setKaptchaConfig(new KaptchaConfig(p));
+		return dk;
 	}
 }
 ----
@@ -59,11 +59,12 @@ public class KcaptchaConfig {
 	String captchaText = captchaProducer.createText();
 	BufferedImage image = captchaProducer.createImage(captchaText);
 
-	FastByteArrayOutputStream out = new FastByteArrayOutputStream();
-	ImageIO.write(image, "png", out);
-	String captchaImg = Base64.getEncoder().encodeToString(out.toByteArray());
-	out.close();
-	
-	System.out.println(captchaImg);
+	try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+		ImageIO.write(image, "png", out);
+
+		String captchaImg = Base64.getEncoder().encodeToString(out.toByteArray());
+		
+		System.out.println(captchaImg);
+	}
 ----
 

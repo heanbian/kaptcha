@@ -8,12 +8,13 @@ import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphVector;
 import java.awt.image.BufferedImage;
 import java.security.SecureRandom;
-import java.util.Random;
 
 import com.google.code.kaptcha.text.WordRenderer;
 import com.google.code.kaptcha.util.AbstractKaptchaConfig;
 
 public class DefaultWordRenderer extends AbstractKaptchaConfig implements WordRenderer {
+	
+	private static final SecureRandom RAND = new SecureRandom();
 
 	public BufferedImage renderWord(String word, int width, int height) {
 		int fontSize = getKaptchaConfig().getTextProducerFontSize();
@@ -29,7 +30,6 @@ public class DefaultWordRenderer extends AbstractKaptchaConfig implements WordRe
 		g2D.setRenderingHints(hints);
 
 		FontRenderContext frc = g2D.getFontRenderContext();
-		Random random = new SecureRandom();
 
 		int startPosY = (height - fontSize) / 5 + fontSize;
 
@@ -38,7 +38,7 @@ public class DefaultWordRenderer extends AbstractKaptchaConfig implements WordRe
 		int[] charWidths = new int[wordChars.length];
 		int widthNeeded = 0;
 		for (int i = 0; i < wordChars.length; i++) {
-			chosenFonts[i] = fonts[random.nextInt(fonts.length)];
+			chosenFonts[i] = fonts[RAND.nextInt(fonts.length)];
 
 			char[] charToDraw = new char[] { wordChars[i] };
 			GlyphVector gv = chosenFonts[i].createGlyphVector(frc, charToDraw);

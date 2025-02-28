@@ -67,4 +67,5 @@ public class DefaultKaptcha extends AbstractKaptchaConfig implements Producer {
 	public String createText() {
 		return getKaptchaConfig().getTextProducerImpl().getText();
 	}
+	
 }
