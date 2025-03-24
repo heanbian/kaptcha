@@ -56,15 +56,19 @@ public class KcaptchaConfig {
 === step 3
 
 ----
+	// 文本
 	String captchaText = captchaProducer.createText();
 	BufferedImage image = captchaProducer.createImage(captchaText);
 
 	try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
 		ImageIO.write(image, "png", out);
-
 		String captchaImg = Base64.getEncoder().encodeToString(out.toByteArray());
-		
 		System.out.println(captchaImg);
 	}
+	
+	// 算术
+	ArithmeticTextProducer producer = new ArithmeticTextProducer();
+	System.out.println(producer.getText());  // 输出如 "56 × 24 = ?"
+	System.out.println("答案：" + producer.getAnswer()); // 输出对应计算结果
 ----
 
