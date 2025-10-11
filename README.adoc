@@ -11,7 +11,7 @@ JDK 25
 <dependency>
   <groupId>com.heanbian</groupId>
   <artifactId>kaptcha</artifactId>
-  <version>2025.3</version>
+  <version>2025.5</version>
 </dependency>
 ----
 
