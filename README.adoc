@@ -4,14 +4,14 @@ WARNING: kaptcha
 
 == 前提条件
 
-JDK 25
+JDK 21+
 
 
 ----
 <dependency>
   <groupId>com.heanbian</groupId>
   <artifactId>kaptcha</artifactId>
-  <version>2025.5</version>
+  <version>2025.7</version>
 </dependency>
 ----
 

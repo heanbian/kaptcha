@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.heanbian</groupId>
 	<artifactId>kaptcha</artifactId>
-	<version>2025.5</version>
+	<version>2025.7</version>
 	<packaging>jar</packaging>
 
 	<name>kaptcha</name>
