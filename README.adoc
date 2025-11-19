@@ -4,7 +4,7 @@ WARNING: kaptcha
 
 == 前提条件
 
-JDK 21+
+JDK 25+
 
 
 ----
