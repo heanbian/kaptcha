@@ -11,16 +11,16 @@ JDK 25+
 <dependency>
   <groupId>com.heanbian</groupId>
   <artifactId>kaptcha</artifactId>
-  <version>2026.4.1</version>
+  <version>2026.4.2</version>
 </dependency>
 ----
 
 http://code.google.com/p/kaptcha/[http://code.google.com/p/kaptcha/]
 
 
-== spring boot example
+== Spring Boot Example
 
-=== step 1
+=== Step 1
 
 ----
 
@@ -50,14 +50,14 @@ public class KcaptchaConfig {
 }
 ----
 
-=== step 2
+=== Step 2
 
 ----
 	@Autowired
 	private DefaultKaptcha captchaProducer;
 ----
 
-=== step 3
+=== Step 3
 
 ----
 	// 文本
@@ -76,3 +76,13 @@ public class KcaptchaConfig {
 	System.out.println("答案：" + producer.getAnswer()); // 输出对应计算结果
 ----
 
+=== Step 4
+
+----
+CaptchaUtils.CaptchaResult result = CaptchaUtils.generate(200, 60, 6, "23456789ABCDEFGHJKLMNPQRSTUVWXYZ");
+
+System.out.println("验证码明文: " + result.text());
+System.out.println("图片Base64: " + result.base64());
+System.out.println("图片DataURL: " + result.dataUrl());
+
+----
